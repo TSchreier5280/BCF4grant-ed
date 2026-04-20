@@ -359,10 +359,10 @@ function buildReview(){
   const rc=(t,rows)=>`<div class="rev-card"><h4>${t}</h4>${rows.map(([k,v])=>`<div class="rev-row"><strong>${k}</strong><span>${v||'—'}</span></div>`).join('')}</div>`;
   const m=v('mission');
   document.getElementById('reviewContent').innerHTML=
-    rc('Organization',[['Name',v('orgName')],['EIN',v('ein')],['Status',v('taxStatus')],['Type',v('orgType')],['Location',v('location')]])+
+    rc('Organization',[['Name',v('orgName')],['EIN',v('ein')],['UEI',v('uei')||'Not registered'],['CAGE',v('cage')||'Not registered'],['Status',v('taxStatus')],['Type',v('orgType')],['Location',v('location')]])+
     rc('Contact',[['Name',v('contactName')],['Title',v('contactTitle')],['Email',v('contactEmail')],['Phone',v('contactPhone')]])+
-    rc('Mission & Focus',[['Mission',m.length>110?m.slice(0,110)+'…':m],['Focus Areas',gc('focus').join(', ')||'—'],['Geographic Reach',v('geoReach')]])+
-    rc('Financial',[['Annual Budget',v('budget')],['Audit Status',gr('audit')],['990s Uploaded',files.length?files.map(f=>f.name).join(', '):'None']])+
+    rc('Mission & Focus',[['Mission',m.length>110?m.slice(0,110)+'…':m],['Focus Category',gr('focusCat')||'—'],['Entity Type',gc('entityType').join(', ')||'—'],['Geographic Reach',v('geoReach')]])+
+    rc('Financial',[['Annual Budget',v('budget')],['Audit Status',gr('audit')],['Documents Uploaded',files.length?files.map(f=>f.name).join(', '):'None']])+
     rc('Readiness & Goals',[['Grant Experience',gr('grantExp')],['Urgency',v('urgency')],['Funding Minimum',v('fundingMin')]]);
 }
 
