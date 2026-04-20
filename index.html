@@ -133,6 +133,11 @@ body{font-family:'Outfit',sans-serif;font-weight:300;background:#f5f2ec;color:#1
       <div class="fg"><label class="flabel">501(c) Status<span class="req">*</span></label><select id="taxStatus" class="fs"><option value="">Select status</option><option>501(c)(3) — Public Charity</option><option>501(c)(3) — Private Foundation</option><option>501(c)(4) — Social Welfare</option><option>Local Government / Municipality</option><option>Tribal Organization</option><option>Pending IRS Determination</option><option>Fiscal Sponsorship</option><option>Other / Not Sure</option></select></div>
     </div>
     <div class="frow">
+      <div class="fg"><label class="flabel">UEI Number</label><div class="fhint">Unique Entity Identifier — required for federal grants. Find yours at sam.gov.</div><input id="uei" class="fi" placeholder="e.g. ABC123DEF456"></div>
+      <div class="fg"><label class="flabel">CAGE Code</label><div class="fhint">Commercial and Government Entity code — required for many federal awards.</div><input id="cage" class="fi" placeholder="e.g. 1A2B3"></div>
+    </div>
+    <div class="callout" style="margin-top:-.5rem;margin-bottom:1.3rem"><strong>Don't have a UEI or CAGE code yet?</strong>No problem — BCF can help you register at SAM.gov as part of our onboarding process. Leave these blank if you haven't registered yet.</div>
+    <div class="frow">
       <div class="fg"><label class="flabel">Organization Type<span class="req">*</span></label><select id="orgType" class="fs"><option value="">Select type</option><option>Nonprofit / Charity</option><option>Community Program</option><option>Local Government</option><option>School / Educational Institution</option><option>Faith-Based Organization</option><option>Tribal Organization</option><option>Social Enterprise</option><option>Other</option></select></div>
       <div class="fg"><label class="flabel">Year Founded</label><input id="yearFounded" class="fi" type="number" placeholder="e.g. 2012"></div>
     </div>
@@ -158,31 +163,52 @@ body{font-family:'Outfit',sans-serif;font-weight:300;background:#f5f2ec;color:#1
     <h2 class="s-title">Mission &amp; Programs</h2>
     <p class="s-sub">Grant funders invest in outcomes. Help us understand the heart of your work so we can match you with funders who care about what you care about.</p>
     <div class="fg"><label class="flabel">Official Mission Statement<span class="req">*</span></label><div class="fhint">Copy directly from your website or IRS filing.</div><textarea id="mission" class="fta" placeholder="e.g. Our mission is to empower youth in underserved communities through mentorship, education, and career development..."></textarea></div>
-    <div class="fg"><label class="flabel">Primary Focus Areas<span class="req">*</span></label><div class="fhint">Select all that apply — this directly affects which grants we search for.</div><div class="cgrid" id="focusGrid"></div></div>
+    <div class="fg"><label class="flabel">Primary Focus Area<span class="req">*</span></label><div class="fhint">Select the category that best describes your organization's work. This determines which funding streams BCF will pursue on your behalf.</div>
+      <div class="cgrid" style="grid-template-columns:1fr;gap:.5rem;margin-bottom:.8rem">
+        <label class="citem" style="padding:.8rem 1rem;border-left:3px solid #c8963c">
+          <input type="radio" name="focusCat" value="Emergency Care">
+          <span><strong style="display:block;margin-bottom:.2rem">Emergency Care</strong><span style="font-size:.78rem;color:#6b7a5e">Food pantries, homeless services, emergency intervention, crisis response, and immediate basic needs</span></span>
+        </label>
+        <label class="citem" style="padding:.8rem 1rem;border-left:3px solid #2d5016">
+          <input type="radio" name="focusCat" value="Stability Care">
+          <span><strong style="display:block;margin-bottom:.2rem">Stability Care</strong><span style="font-size:.78rem;color:#6b7a5e">Housing assistance, mental health care, children's services, workforce development, and programs that help people find stable footing</span></span>
+        </label>
+        <label class="citem" style="padding:.8rem 1rem;border-left:3px solid #5a7a3a">
+          <input type="radio" name="focusCat" value="Developmental Care">
+          <span><strong style="display:block;margin-bottom:.2rem">Developmental Care</strong><span style="font-size:.78rem;color:#6b7a5e">Museums, arts and theater, community/economic development, education enrichment, and programs that help communities grow and thrive</span></span>
+        </label>
+      </div>
+      <div class="fhint" style="margin-top:.5rem">Or select your entity type if applicable:</div>
+      <div class="cgrid">
+        <label class="citem"><input type="checkbox" name="entityType" value="Church"> <span>Church</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="EMS"> <span>EMS</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="Police"> <span>Police</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="Fire"> <span>Fire</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="University / College"> <span>University / College</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="K-12 School"> <span>K-12 School</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="SPGE"> <span>SPGE</span></label>
+        <label class="citem"><input type="checkbox" name="entityType" value="Other"> <span>Other</span></label>
+      </div>
+    </div>
     <div class="fg"><label class="flabel">Populations Served<span class="req">*</span></label><div class="cgrid" id="popsGrid"></div></div>
     <div class="frow">
       <div class="fg"><label class="flabel">Geographic Service Area<span class="req">*</span></label><select id="geoReach" class="fs"><option value="">Select reach</option><option>Single city or county</option><option>Multiple counties</option><option>Statewide</option><option>Multi-state / Regional</option><option>National</option><option>International</option></select></div>
       <div class="fg"><label class="flabel">Specific Counties / Cities Served</label><input id="specificGeo" class="fi" placeholder="e.g. Carter, Greenup, Boyd counties in KY"></div>
     </div>
     <div class="fg"><label class="flabel">Describe Your 2–3 Core Programs<span class="req">*</span></label><textarea id="programs" class="fta" placeholder="Program 1: After-school tutoring serving 150 kids weekly...&#10;Program 2: Summer job placement for teens..."></textarea></div>
-    <div class="fg"><label class="flabel">Impact Metrics / Outcomes</label><div class="fhint">How many people do you serve? What results have you measured?</div><textarea id="outcomes" class="fta" style="min-height:80px" placeholder="e.g. Served 240 youth last year. 87% improved GPA..."></textarea></div>
+    <div class="fg"><label class="flabel">Community Impact</label><div class="fhint">How many people have you served? If exact numbers aren't available, please describe one of your most successful recent programs or events. Include any estimates you can.</div><textarea id="outcomes" class="fta" style="min-height:100px" placeholder="e.g. Last summer we hosted a back-to-school event that served roughly 200 families in our county. We also run a weekly food distribution that we estimate reaches 50–75 households. We don't have exact counts yet but are working to track this better..."></textarea></div>
     <div class="fnav"><button class="btn btn-s" onclick="back(1)">← Back</button><button class="btn btn-p" onclick="next(1)">Continue →</button></div>
   </div>
 
   <div class="fsection" id="s2">
     <div class="s-eye">Step 3 of 6</div>
     <h2 class="s-title">Financial Profile</h2>
-    <p class="s-sub">Your financial health directly affects which grants you can apply for. Upload your 990(s) so we can do a thorough analysis.</p>
-    <div class="callout"><strong>Why do we need your 990?</strong>Your IRS Form 990 tells funders everything about your financial health and governance. We use it to identify eligibility, flag issues, and strengthen your application.</div>
-    <div class="fg"><label class="flabel">Upload IRS Form 990(s)</label><div class="fhint">Up to 3 years of 990s if available. PDF only, max 20MB each.</div>
-      <div class="upzone" id="upzone"><input type="file" id="fileInput" accept=".pdf,.PDF" multiple onchange="handleFiles(event)"><span class="uico">📂</span><p><strong>Click to upload</strong> or drag and drop your 990 PDF(s)</p><p style="font-size:.76rem;margin-top:.2rem">PDF only · Up to 3 files · Max 20MB each</p></div>
-      <div class="flist" id="fileList"></div>
-    </div>
+    <p class="s-sub">Your financial health directly affects which grants you can apply for. Share what you have — every organization is at a different stage and that's okay.</p>
     <div class="frow">
       <div class="fg"><label class="flabel">Annual Operating Budget<span class="req">*</span></label><select id="budget" class="fs"><option value="">Select range</option><option>Under $50,000</option><option>$50,000–$100,000</option><option>$100,000–$250,000</option><option>$250,000–$500,000</option><option>$500,000–$1,000,000</option><option>$1M–$5M</option><option>Over $5M</option></select></div>
       <div class="fg"><label class="flabel">Most Recent Fiscal Year End</label><input id="fiscalYear" class="fi" placeholder="e.g. December 31, 2023"></div>
     </div>
-    <div class="fg"><label class="flabel">Current Funding Sources</label><div class="fhint">Where does your money come from today?</div><div class="cgrid" id="fundSrcGrid"></div></div>
+    <div class="fg"><label class="flabel">Current Funding Sources</label><div class="fhint">Where does your money come from today? Check all that apply.</div><div class="cgrid" id="fundSrcGrid"></div></div>
     <div class="frow">
       <div class="fg"><label class="flabel">Total Grants Received Last Year</label><select id="grantsReceived" class="fs"><option value="">Select range</option><option>$0 — Haven't applied yet</option><option>Under $10,000</option><option>$10,000–$50,000</option><option>$50,000–$150,000</option><option>$150,000–$500,000</option><option>Over $500,000</option></select></div>
       <div class="fg"><label class="flabel">Months of Operating Reserves</label><select id="reserves" class="fs"><option value="">Select</option><option>None (0 months)</option><option>Less than 1 month</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option><option>More than 12 months</option></select></div>
@@ -194,6 +220,13 @@ body{font-family:'Outfit',sans-serif;font-weight:300;background:#f5f2ec;color:#1
         <label class="ritem"><input type="radio" name="audit" value="No audit, but have reviewed financials"><div><strong>No audit, but have reviewed financials</strong><span>Often acceptable for smaller grants</span></div></label>
         <label class="ritem"><input type="radio" name="audit" value="No formal audit or review"><div><strong>No formal audit or review</strong><span>We can help you understand what you need</span></div></label>
       </div>
+    </div>
+    <hr class="fdiv">
+    <div class="fg"><label class="flabel">Upload Financial Documents (Optional)</label>
+      <div class="fhint">Upload your IRS Form 990, most recent audit, or both if available. Not all organizations will have these — SPGEs, emergency services, churches, and newer nonprofits may not have a 990 or audit on file. Upload whatever you have.</div>
+      <div class="callout"><strong>What to upload:</strong>IRS Form 990 (nonprofits) · Independent Audit · Reviewed Financial Statements · Any official financial summary your organization has on file. PDF preferred, max 20MB per file.</div>
+      <div class="upzone" id="upzone"><input type="file" id="fileInput" accept=".pdf,.PDF,.doc,.docx" multiple onchange="handleFiles(event)"><span class="uico">📂</span><p><strong>Click to upload</strong> or drag and drop your financial documents here</p><p style="font-size:.76rem;margin-top:.2rem">990, Audit, or Financial Statements · Up to 3 files · Max 20MB each</p></div>
+      <div class="flist" id="fileList"></div>
     </div>
     <div class="fnav"><button class="btn btn-s" onclick="back(2)">← Back</button><button class="btn btn-p" onclick="next(2)">Continue →</button></div>
   </div>
@@ -274,15 +307,13 @@ body{font-family:'Outfit',sans-serif;font-weight:300;background:#f5f2ec;color:#1
 </div>
 
 <script>
-const FOCUS=['Youth & Education','Workforce Development','Health & Wellness','Mental Health / Substance Abuse','Housing & Homelessness','Food Security','Environment & Conservation','Arts & Culture','Economic Development','Community Development','Veterans & Military Families','Seniors & Aging','Disability Services','Criminal Justice / Reentry','STEAM / Technology','Rural Development','Faith-Based Programs','Other'];
 const POPS=['Children (0–12)','Youth / Teens (13–17)','Young Adults (18–24)','Adults (25–64)','Seniors (65+)','Low-Income Households','Rural Communities','Minority / BIPOC Communities','Immigrants / Refugees','Veterans','Individuals with Disabilities','Justice-Involved Individuals','General Public'];
-const FUND_SRC=['Individual Donations','Federal Grants','State Grants','Foundation / Private Grants','Corporate Sponsorships','Earned Revenue / Fees','Events & Fundraisers','Government Contracts','None currently'];
+const FUND_SRC=['Individual Donations','Personal Investment (Founder-Funded)','Federal Grants','State Grants','Foundation / Private Grants','Corporate Sponsorships','Earned Revenue / Fees','Events & Fundraisers','Government Contracts','None currently'];
 const CAPACITY=['Paid Executive Director','Paid Program Staff','Dedicated Finance / Accounting','Active Board of Directors','Grant Writer on Staff','Volunteers Only','1–3 Part-time Staff','4–10 Full-time Staff','10+ Staff'];
 const DOCS=['IRS Determination Letter','Current Strategic Plan','Program Logic Models','Annual Report','Budget / Financial Statements','Board Roster','Evaluation / Impact Reports','Letters of Support / MOUs'];
 const USE_FUNDS=['Program Expansion','New Program Launch','Staffing / Personnel','Equipment / Technology','Facilities / Renovation','Capacity Building','Operational Support','Research / Evaluation'];
 
 function buildGrid(id,items,name){document.getElementById(id).innerHTML=items.map(o=>`<label class="citem"><input type="checkbox" name="${name}" value="${o}"> <span>${o}</span></label>`).join('');}
-buildGrid('focusGrid',FOCUS,'focus');
 buildGrid('popsGrid',POPS,'pops');
 buildGrid('fundSrcGrid',FUND_SRC,'fundsrc');
 buildGrid('capGrid',CAPACITY,'cap');
@@ -344,20 +375,21 @@ async function submitForm(){
     el.textContent='✓ '+el.textContent.replace('⏳ ','');
   },(i+1)*2800));
 
-  const orgProfile=`ORG: ${v('orgName')} | EIN: ${v('ein')} | STATUS: ${v('taxStatus')} | TYPE: ${v('orgType')}
+  const orgProfile=`ORG: ${v('orgName')} | EIN: ${v('ein')} | UEI: ${v('uei')||'Not registered'} | CAGE: ${v('cage')||'Not registered'} | STATUS: ${v('taxStatus')} | TYPE: ${v('orgType')}
 LOCATION: ${v('location')} | FOUNDED: ${v('yearFounded')} | WEBSITE: ${v('website')}
 CONTACT: ${v('contactName')}, ${v('contactTitle')} | ${v('contactEmail')} | ${v('contactPhone')}
 MISSION: ${v('mission')}
-FOCUS AREAS: ${gc('focus').join(', ')}
+PRIMARY FOCUS CATEGORY: ${gr('focusCat')||'Not selected'}
+ENTITY TYPE: ${gc('entityType').join(', ')||'N/A'}
 POPULATIONS: ${gc('pops').join(', ')}
 GEO REACH: ${v('geoReach')} — ${v('specificGeo')}
 PROGRAMS: ${v('programs')}
-OUTCOMES: ${v('outcomes')}
+COMMUNITY IMPACT: ${v('outcomes')}
 BUDGET: ${v('budget')} | FISCAL YEAR END: ${v('fiscalYear')}
 FUNDING SOURCES: ${gc('fundsrc').join(', ')}
 GRANTS LAST YEAR: ${v('grantsReceived')} | RESERVES: ${v('reserves')}
 AUDIT STATUS: ${gr('audit')}
-990s UPLOADED: ${files.length?files.map(f=>f.name).join(', '):'None'}
+FINANCIAL DOCS UPLOADED: ${files.length?files.map(f=>f.name).join(', '):'None'}
 GRANT EXPERIENCE: ${gr('grantExp')}
 PAST GRANTS: ${v('pastGrants')}
 STAFF CAPACITY: ${gc('cap').join(', ')}
