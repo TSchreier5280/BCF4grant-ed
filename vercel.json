@@ -1,3 +1,11 @@
 {
-  "version": 2
+  "version": 2,
+  "functions": {
+    "api/analyze.js": {
+      "maxDuration": 60
+    },
+    "api/send-email.js": {
+      "maxDuration": 30
+    }
+  }
 }
