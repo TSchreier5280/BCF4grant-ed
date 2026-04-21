@@ -289,7 +289,7 @@ body{font-family:'Outfit',sans-serif;font-weight:300;background:#f5f2ec;color:#1
       <h4>AI Grant Readiness Analysis</h4>
       <div class="result-wrap" id="analysisResult">Generating analysis...</div>
     </div>
-    <p style="font-size:.8rem;color:#6b7a5e">Questions? Contact BCF at <a href="mailto:businesscultivationfoundation@gmail.com" style="color:#2d5016">businesscultivationfoundation@gmail.com</a> or <a href="tel:6063154945" style="color:#2d5016">(606) 315-4945</a></p>
+    <p style="font-size:.8rem;color:#6b7a5e">Questions? Contact BCF at <a href="mailto:rparsons@bcfcenter.org" style="color:#2d5016">rparsons@bcfcenter.org</a> or <a href="tel:6063154945" style="color:#2d5016">(606) 315-4945</a></p>
   </div>
 </div>
 
@@ -488,7 +488,7 @@ Today's date is ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'l
       document.getElementById('loadingOverlay').classList.remove('active');
       document.getElementById('fwrap').style.display='none';
       document.querySelector('.prog-nav').style.display='none';
-      document.getElementById('succMsg').textContent=`Thank you, ${v('contactName')}. Your intake for ${v('orgName')} has been submitted. Our AI has analyzed your organization and searched live grant databases for opportunities tailored to your mission. BCF will reach out within 3–5 business days.`;
+      document.getElementById('succMsg').textContent=`Thank you, ${v('contactName')}! Your intake for ${v('orgName')} has been successfully submitted. The BCF team has been notified and will be in touch with you soon. We look forward to helping you unlock funding for your mission!`;
       document.getElementById('analysisResult').textContent=finalText;
       document.getElementById('successScreen').style.display='block';
       window.scrollTo({top:0,behavior:'smooth'});
