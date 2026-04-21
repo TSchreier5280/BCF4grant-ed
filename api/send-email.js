@@ -41,6 +41,7 @@ AI GRANT READINESS ANALYSIS
 ${analysis}
   `.trim();
 
+  // Plain-text version for email clients
   const htmlBody = `
 <!DOCTYPE html>
 <html>
@@ -62,14 +63,17 @@ ${analysis}
     <strong>Contact:</strong> ${contactName} &mdash; ${contactEmail}<br>
     <strong>Submitted:</strong> ${new Date().toLocaleString()}
   </div>
+
   <div class="section">
     <h2>Intake Profile</h2>
     <pre style="white-space:pre-wrap;font-size:13px;line-height:1.7">${orgProfile}</pre>
   </div>
+
   <div class="section">
     <h2>AI Grant Readiness Analysis</h2>
     <div class="analysis">${analysis.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
   </div>
+
   <div class="footer">
     Sent by BCF Grant Intake System &mdash; <a href="https://www.bcfcenter.org">bcfcenter.org</a>
   </div>
@@ -79,7 +83,7 @@ ${analysis}
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'BCF Grant Intake <intake@bcfcenter.org>',
+      from: 'BCF Grant Intake <onboarding@resend.dev>',
       to: ['rparsons@bcfcenter.org'],
       replyTo: contactEmail || 'noreply@bcfcenter.org',
       subject: `New Grant Intake: ${orgName}`,
