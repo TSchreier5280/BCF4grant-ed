@@ -83,9 +83,9 @@ ${analysis}
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'BCF Grant Intake <intake@bcfcenter.org>',
-      to: ['tschreier606@gmail.com'],
-      replyTo: contactEmail || 'noreply@bcfcenter.org',
+      from: 'BCF Grant Intake <rparsons@bcfcenter.org>',
+      to: ['rparsons@bcfcenter.org'],
+      replyTo: contactEmail || 'rparsons@bcfcenter.org',
       subject: `New Grant Intake: ${orgName}`,
       html: htmlBody,
       text: emailBody,
