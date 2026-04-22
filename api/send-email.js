@@ -2,48 +2,48 @@
 // Sends the grant readiness report to BCF via Resend
 // Environment variables required: RESEND_API_KEY
 
-import { Resend } from ‘resend’;
+import { Resend } from 'resend';
 
 export default async function handler(req, res) {
-if (req.method !== ‘POST’) {
-return res.status(405).json({ error: ‘Method not allowed’ });
-}
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-const { orgName, contactName, contactEmail, orgProfile, analysis } = req.body;
+  const { orgName, contactName, contactEmail, orgProfile, analysis } = req.body;
 
-if (!orgName || !analysis) {
-return res.status(400).json({ error: ‘Missing required fields’ });
-}
+  if (!orgName || !analysis) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
 
-const resendKey = process.env.RESEND_API_KEY;
-if (!resendKey) {
-return res.status(500).json({ error: ‘Resend API key not configured’ });
-}
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey) {
+    return res.status(500).json({ error: 'Resend API key not configured' });
+  }
 
-const resend = new Resend(resendKey);
+  const resend = new Resend(resendKey);
 
-# const emailBody = `
+  const emailBody = `
 NEW GRANT READINESS INTAKE SUBMISSION
-
-# Organization: ${orgName}
+======================================
+Organization: ${orgName}
 Contact: ${contactName} | ${contactEmail}
 Submitted: ${new Date().toLocaleString()}
+======================================
 
-# FULL INTAKE DATA
-
+FULL INTAKE DATA
+======================================
 ${orgProfile}
 
-# ======================================
+======================================
 AI GRANT READINESS ANALYSIS
+======================================
 
 ${analysis}
-`.trim();
+  `.trim();
 
-// Plain-text version for email clients
-const htmlBody = `
-
+  // Plain-text version for email clients
+  const htmlBody = `
 <!DOCTYPE html>
-
 <html>
 <head><meta charset="UTF-8"><style>
   body { font-family: Arial, sans-serif; color: #1e2b1e; max-width: 700px; margin: 0 auto; padding: 20px; }
@@ -81,27 +81,25 @@ const htmlBody = `
 </html>
   `.trim();
 
-try {
-const { data, error } = await resend.emails.send({
-from: ‘BCF Grant Intake [intake@bcfcenter.org](mailto:intake@bcfcenter.org)’,
-to: [‘rparsons@bcfcenter.org’],
-replyTo: contactEmail || ‘noreply@bcfcenter.org’,
-subject: `New Grant Intake: ${orgName}`,
-html: htmlBody,
-text: emailBody,
-});
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'BCF Grant Intake <intake@bcfcenter.org>',
+      to: ['tschreier606@gmail.com'],
+      replyTo: contactEmail || 'noreply@bcfcenter.org',
+      subject: `New Grant Intake: ${orgName}`,
+      html: htmlBody,
+      text: emailBody,
+    });
 
-```
-if (error) {
-  console.error('Resend error:', error);
-  return res.status(500).json({ error: error.message });
-}
+    if (error) {
+      console.error('Resend error:', error);
+      return res.status(500).json({ error: error.message });
+    }
 
-return res.status(200).json({ success: true, id: data?.id });
-```
+    return res.status(200).json({ success: true, id: data?.id });
 
-} catch (err) {
-console.error(‘Email send error:’, err);
-return res.status(500).json({ error: err.message || ‘Email delivery failed’ });
-}
+  } catch (err) {
+    console.error('Email send error:', err);
+    return res.status(500).json({ error: err.message || 'Email delivery failed' });
+  }
 }
